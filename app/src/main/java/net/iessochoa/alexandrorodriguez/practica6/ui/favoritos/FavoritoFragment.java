@@ -1,4 +1,4 @@
-package net.iessochoa.alexandrorodriguez.practica6.ui.home;
+package net.iessochoa.alexandrorodriguez.practica6.ui.favoritos;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import net.iessochoa.alexandrorodriguez.practica6.R;
-import net.iessochoa.alexandrorodriguez.practica6.databinding.FragmentHomeBinding;
+import net.iessochoa.alexandrorodriguez.practica6.databinding.FragmentFavoritosBinding;
 
-public class HomeFragment extends Fragment {
+public class FavoritoFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private FavoritoViewModel favoritoViewModel;
+    private FragmentFavoritosBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        favoritoViewModel =
+                new ViewModelProvider(this).get(FavoritoViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentFavoritosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textGallery;
+        favoritoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

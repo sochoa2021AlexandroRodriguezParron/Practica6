@@ -1,4 +1,4 @@
-package net.iessochoa.alexandrorodriguez.practica6.ui.gallery;
+package net.iessochoa.alexandrorodriguez.practica6.ui.pokemon;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import net.iessochoa.alexandrorodriguez.practica6.R;
-import net.iessochoa.alexandrorodriguez.practica6.databinding.FragmentGalleryBinding;
+import net.iessochoa.alexandrorodriguez.practica6.databinding.FragmentPokemonsBinding;
 
-public class GalleryFragment extends Fragment {
+public class PokemonsFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
-    private FragmentGalleryBinding binding;
+    private PokemonsViewModel pokemonsViewModel;
+    private FragmentPokemonsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        pokemonsViewModel =
+                new ViewModelProvider(this).get(PokemonsViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentPokemonsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textHome;
+        pokemonsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
