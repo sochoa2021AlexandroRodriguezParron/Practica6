@@ -72,10 +72,10 @@ public abstract class PokemonDatabase extends RoomDatabase {
             pokemon=new Pokemon("bulbasaur","https://pokeapi.co/api/v2/pokemon/1/",formatoDelTexto.parse("10-10-2020"));
             mDao.insert(pokemon);
 
-            pokemon=new Pokemon("ivysaur","https://pokeapi.co/api/v2/pokemon/2/",formatoDelTexto.parse("1 1-10-2020"));
+            pokemon=new Pokemon("ivysaur","https://pokeapi.co/api/v2/pokemon/2/",formatoDelTexto.parse("1-10-2020"));
             mDao.insert(pokemon);
 
-            pokemon=new Pokemon("venusaur","https://pokeapi.co/api/v2/pokemon/3/",formatoDelTexto.parse(" 12-11-2020"));
+            pokemon=new Pokemon("venusaur","https://pokeapi.co/api/v2/pokemon/3/",formatoDelTexto.parse("12-11-2020"));
             mDao.insert(pokemon);
 
             pokemon=new Pokemon("charmander","https://pokeapi.co/api/v2/pokemon/4/",formatoDelTexto.parse("12-9-2020"));
@@ -87,7 +87,7 @@ public abstract class PokemonDatabase extends RoomDatabase {
             pokemon=new Pokemon("charizard","https://pokeapi.co/api/v2/pokemon/6/",formatoDelTexto.parse("8-3-2020"));
             mDao.insert(pokemon);
 
-            pokemon=new Pokemon("squirtle","https://pokeapi.co/api/v2/pokemon/7/",formatoDelTexto.parse(" 1-1-2020"));
+            pokemon=new Pokemon("squirtle","https://pokeapi.co/api/v2/pokemon/7/",formatoDelTexto.parse("1-1-2020"));
             mDao.insert(pokemon);
         } catch (ParseException e) {
             e.printStackTrace();
