@@ -1,4 +1,4 @@
-package net.iessochoa.alexandrorodriguez.practica6;
+package net.iessochoa.alexandrorodriguez.practica6.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.iessochoa.alexandrorodriguez.practica6.R;
 import net.iessochoa.alexandrorodriguez.practica6.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
