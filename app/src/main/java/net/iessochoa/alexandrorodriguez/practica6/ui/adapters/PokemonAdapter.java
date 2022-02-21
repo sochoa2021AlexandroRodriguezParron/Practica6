@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.iessochoa.alexandrorodriguez.practica6.R;
@@ -18,6 +19,7 @@ import java.util.List;
 public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>{
 
     private List<Pokemon> listaPokemon;
+    private OnItemPokemonClickListener listenerclick;
 
 
     //cuando se modifique la base de datos, actualizamos el recyclerview
@@ -65,6 +67,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
         //private ImageView ivBorrar;
         //guardamos el pokemon para simplificar
         private Pokemon pokemon;
+        private CardView cv_fondo;
 
         public PokemonViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,11 +75,28 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
             tvNombre = itemView.findViewById(R.id.tvNombre);
             tvFechaCompra = itemView.findViewById(R.id.tvFechaCompra);
             ivImagenPokemon = itemView.findViewById(R.id.ivImagenPokemon);
+            cv_fondo = itemView.findViewById(R.id.cv_fondo);
 
+            cv_fondo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listenerclick.setOnItemPokemonClickListener(listaPokemon.get(PokemonViewHolder.this.getBindingAdapterPosition()));
+                }
+            });
         }
 
         public Pokemon getPokemon() {
             return pokemon;
         }
+    }
+
+
+
+    //Interfaz para poder ejecutar el click del recyclerView
+    public interface OnItemPokemonClickListener {
+        void setOnItemPokemonClickListener(Pokemon pokemon);
+    }
+    public void setOnItemPokemonClickListener(OnItemPokemonClickListener listener) {
+        this.listenerclick = listener;
     }
 }
