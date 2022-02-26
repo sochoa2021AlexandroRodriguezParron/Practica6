@@ -94,11 +94,7 @@ public abstract class PokemonDatabase extends RoomDatabase {
         }
     }
 
-
-
-
-
-            @NonNull
+    @NonNull
     @Override
     protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
         return null;
