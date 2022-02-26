@@ -10,6 +10,8 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -35,11 +37,11 @@ public class Pokemon implements Parcelable {
     private int id;
     @ColumnInfo(name = NOMBRE)
     @NonNull
-    //@SerializedName("name")//retrofit
+    @SerializedName("name")//retrofit
     private String nombre;
     @ColumnInfo(name = URL)
     @NonNull
-    private String url;
+    private String url;//este campo tiene el mismo nombre que el JSON
     @ColumnInfo(name = FECHA_COMPRA)
     @NonNull
     private Date fechaCompra;

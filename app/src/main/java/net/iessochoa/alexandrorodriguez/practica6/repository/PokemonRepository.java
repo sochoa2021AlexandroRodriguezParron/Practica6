@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import net.iessochoa.alexandrorodriguez.practica6.model.Pokemon;
 import net.iessochoa.alexandrorodriguez.practica6.model.PokemonDao;
 import net.iessochoa.alexandrorodriguez.practica6.model.PokemonDatabase;
+import net.iessochoa.alexandrorodriguez.practica6.network.NetworkService;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public class PokemonRepository {
     //Room
     private PokemonDao mPokemonDao;
     //Network-Retrofit
+    //**************WebApi********
+    private NetworkService mNetworkService;
     //pendiente....
     //singleton
     public static PokemonRepository getInstance(Application application) {
@@ -39,6 +42,7 @@ public class PokemonRepository {
         PokemonDatabase db=PokemonDatabase.getDatabase(application);
         //Recuperamos el DAO necesario para el CRUD de la base de datos
         mPokemonDao =db.pokemonDao();
+        mNetworkService=NetworkService.getInstance();
     }
 
     //********ROOM***********
@@ -55,5 +59,14 @@ public class PokemonRepository {
     }
     // No utilizamos la actualización.
 
+    //*************Retrofit*****************
+    //recuperamos el LiveData con los pokemon de servicio Web
+    public LiveData<List<Pokemon>> getPokemons(){
+        return mNetworkService.getListaPokemonApi();
+    }
+    //Le decimos a retrofit que se traiga los siguientes de la lista de pokemon
+    public void getNextPokemon(){
+        mNetworkService.getSiguientesPokemonsApi();
+    }
 
 }
