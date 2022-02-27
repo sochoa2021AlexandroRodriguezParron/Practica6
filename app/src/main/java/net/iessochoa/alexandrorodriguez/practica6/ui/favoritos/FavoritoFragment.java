@@ -15,13 +15,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.iessochoa.alexandrorodriguez.practica6.R;
 import net.iessochoa.alexandrorodriguez.practica6.databinding.FragmentFavoritosBinding;
 import net.iessochoa.alexandrorodriguez.practica6.model.Pokemon;
+import net.iessochoa.alexandrorodriguez.practica6.ui.VerPokemonFragment;
 import net.iessochoa.alexandrorodriguez.practica6.ui.adapters.PokemonAdapter;
+import net.iessochoa.alexandrorodriguez.practica6.ui.pokemon.PokemonsFragment;
 
 public class FavoritoFragment extends Fragment {
 
@@ -42,15 +46,20 @@ public class FavoritoFragment extends Fragment {
         binding.rvPokemons.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvPokemons.setBackgroundColor(Color.GREEN);
 
-        favoritoViewModel.getAllPokemons().observe(getViewLifecycleOwner(), listaPokemon -> {
-            adapter.setListaPokemon(listaPokemon);
-        });
-
         adapter.setOnItemPokemonClickListener(new PokemonAdapter.OnItemPokemonClickListener() {
             @Override
             public void setOnItemPokemonClickListener(Pokemon pokemon) {
-                Toast.makeText(getContext(), pokemon.getNombre(), Toast.LENGTH_SHORT).show();
+                //creamos bundle para pasar el pokemon al fragment ver_pokemon
+                Bundle argumentosBundle=new Bundle();
+                argumentosBundle.putParcelable(VerPokemonFragment.ARG_POKEMON,pokemon);
+                //llamamos a la acción con el id del Navigation y el bundle
+                NavHostFragment.findNavController(FavoritoFragment.this).navigate(R.id.action_nav_Favoritos_to_verPokemonFragment,argumentosBundle);
             }
+        });
+
+
+        favoritoViewModel.getAllPokemons().observe(getViewLifecycleOwner(), listaPokemon -> {
+            adapter.setListaPokemon(listaPokemon);
         });
 
         definirEventoSwiper();

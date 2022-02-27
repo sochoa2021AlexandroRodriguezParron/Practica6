@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.iessochoa.alexandrorodriguez.practica6.R;
 import net.iessochoa.alexandrorodriguez.practica6.databinding.FragmentPokemonsBinding;
 import net.iessochoa.alexandrorodriguez.practica6.model.Pokemon;
+import net.iessochoa.alexandrorodriguez.practica6.ui.VerPokemonFragment;
 import net.iessochoa.alexandrorodriguez.practica6.ui.adapters.PokemonAdapter;
 
 import java.util.Date;
@@ -43,6 +45,17 @@ public class PokemonsFragment extends Fragment {
         binding.rvPokemon.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvPokemon.setBackgroundColor(getResources().getColor(R.color.verde_claro));
         defineDetectarFinRecycler();
+
+        adapter.setOnItemPokemonClickListener(new PokemonAdapter.OnItemPokemonClickListener() {
+            @Override
+            public void setOnItemPokemonClickListener(Pokemon pokemon) {
+                //creamos bundle para pasar el pokemon al fragment ver_pokemon
+                Bundle argumentosBundle=new Bundle();
+                argumentosBundle.putParcelable(VerPokemonFragment.ARG_POKEMON,pokemon);
+                //llamamos a la acción con el id del Navigation y el bundle
+                NavHostFragment.findNavController(PokemonsFragment.this).navigate(R.id.action_nav_home_to_verPokemonFragment,argumentosBundle);
+            }
+        });
 
         binding.pbCarga.setVisibility(View.GONE);//oculta
 
